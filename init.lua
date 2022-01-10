@@ -1,34 +1,31 @@
-local files = {
-	"options",
-	"keymaps",
-	"plugins",
-	"colorscheme",
-	"treesitter",
-	"lsp",
-	"cmp",
-	"autopairs",
-	"nvim-tree",
-	"telescope",
-	"comment",
-	"gitsigns",
-	"bufferline",
-	"lualine",
-	"project",
-	"indentline",
-	"alpha",
-	"which-key",
-	"toggleterm",
-}
-vim.opt.termguicolors = true
-require("user.notify")
-local status_ok, notify = pcall(require, "notify")
-if status_ok then
-	vim.notify = notify
-for _, v in ipairs(files) do
-	---@diagnostic disable-next-line: redefined-local
-	local status_ok, _ = pcall(require, "user." .. v)
-	if not status_ok then
-		vim.notify(v .. ".lua not found!", vim.log.levels.ERROR)
-	end
-end
-end
+require("user.core")
+require("user.lazy")
+
+
+--[[ local dap = require('mason-nvim-dap') ]]
+--[[]]
+--[[ vim.api.nvim_create_user_command("RunScriptWithArgs", function(t) ]]
+--[[   -- :help nvim_create_user_command ]]
+--[[   local args = vim.split(vim.fn.expand(t.args), '\n') ]]
+--[[   local approval = vim.fn.confirm( ]]
+--[[     "Will try to run:\n    " .. ]]
+--[[     vim.bo.filetype .. " " .. ]]
+--[[     vim.fn.expand('%') .. " " .. ]]
+--[[     t.args .. "\n\n" .. ]]
+--[[     "Do you approve? ", ]]
+--[[     "&Yes\n&No", 1 ]]
+--[[   ) ]]
+--[[   if approval == 1 then ]]
+--[[     dap.run({ ]]
+--[[       type = vim.bo.filetype, ]]
+--[[       request = 'launch', ]]
+--[[       name = 'Launch file with custom arguments (adhoc)', ]]
+--[[       program = '${file}', ]]
+--[[       args = args, ]]
+--[[     }) ]]
+--[[   end ]]
+--[[ end, { ]]
+--[[   complete = 'file', ]]
+--[[   nargs = '*' ]]
+--[[ }); ]]
+--[[ vim.keymap.set('n', '<leader>R', ":RunScriptWithArgs ") ]]
