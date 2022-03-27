@@ -1,4 +1,8 @@
-require("notify").setup({
+local status_ok, notifye = pcall(require, "notify")
+if not status_ok then
+	return
+end
+notifye.setup({
 	-- Animation style (see below for details)
 	stages = "fade_in_slide_out",
 
