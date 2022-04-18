@@ -18,7 +18,7 @@ local files = {
 	"alpha",
 	"which-key",
 	"toggleterm",
-  "neoscroll",
+	"neoscroll",
 }
 vim.opt.termguicolors = true
 require("user.notify")
