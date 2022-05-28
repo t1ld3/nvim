@@ -1,25 +1,5 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-vim.g.nvim_tree_icons = {
-	default = "",
-	symlink = "",
-	git = {
-		unstaged = "",
-		staged = "S",
-		unmerged = "",
-		renamed = "➜",
-		deleted = "",
-		untracked = "U",
-		ignored = "◌",
-	},
-	folder = {
-		default = "",
-		open = "",
-		empty = "",
-		empty_open = "",
-		symlink = "",
-	},
-}
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
@@ -34,14 +14,20 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
-	disable_netrw = true,
-	hijack_netrw = true,
-	open_on_setup = false,
 	auto_reload_on_write = true,
+  create_in_closed_folder = false,
+	disable_netrw = true,
+  hijack_cursor = false,
+	hijack_netrw = true,
 	hijack_unnamed_buffer_when_opening = false,
 	ignore_buffer_on_setup = false,
+  open_on_setup = false,
 	open_on_setup_file = false,
+	open_on_tab = false,
 	sort_by = "name",
+	update_cwd = true,
+  reload_on_bufenter = false,
+  respect_buf_cwd = false,
 	view = {
 		width = 30,
 		height = 30,
@@ -59,6 +45,11 @@ nvim_tree.setup({
 		},
 	},
 	renderer = {
+    add_trailing = false,
+    group_empty = false,
+    highlight_git = false,
+    highlight_opened_files = "none",
+    root_folder_modifier = ":~",
 		indent_markers = {
 			enable = false,
 			icons = {
@@ -69,6 +60,29 @@ nvim_tree.setup({
 		},
 		icons = {
 			webdev_colors = true,
+			git_placement = "before",
+			padding = " ",
+			symlink_arrow = " ➛ ",
+			glyphs = {
+				default = "",
+				symlink = "",
+				folder = {
+					default = "",
+					open = "",
+					empty = "",
+					empty_open = "",
+					symlink = "",
+				},
+				git = {
+					unstaged = "",
+					staged = "S",
+					unmerged = "",
+					renamed = "➜",
+					deleted = "",
+					untracked = "U",
+					ignored = "◌",
+				},
+			},
 		},
 	},
 	hijack_directories = {
@@ -117,7 +131,7 @@ nvim_tree.setup({
 			restrict_above_cwd = false,
 		},
 		open_file = {
-			quit_on_open = false,
+			quit_on_open = true,
 			resize_window = true,
 			window_picker = {
 				enable = true,
@@ -145,7 +159,4 @@ nvim_tree.setup({
 			profile = false,
 		},
 	},
-	open_on_tab = false,
-	hijack_cursor = true,
-	update_cwd = true,
 })
