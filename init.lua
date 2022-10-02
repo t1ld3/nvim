@@ -22,12 +22,11 @@ local files = {
 }
 vim.opt.termguicolors = true
 require("user.notify")
-local status_ok, notify = pcall(require, "notify")
-if status_ok then
+local status_notify_ok, notify = pcall(require, "notify")
+if status_notify_ok then
   vim.notify = notify
 end
 for _, v in ipairs(files) do
-  ---@diagnostic disable-next-line: redefined-local
   local status_ok, _ = pcall(require, "user." .. v)
   if not status_ok then
     vim.notify(v .. ".lua not found!", vim.log.levels.ERROR)
