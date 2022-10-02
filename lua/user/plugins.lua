@@ -58,7 +58,6 @@ return packer.startup(function(use)
   use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
   use("folke/which-key.nvim")
   use("tpope/vim-surround")
-  use("karb94/neoscroll.nvim")
   use("RRethy/vim-illuminate")
 
   use("kyazdani42/nvim-web-devicons")
@@ -88,7 +87,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
-  --  use 'nvim-telescope/telescope-media-files.nvim'
+  use("nvim-telescope/telescope-media-files.nvim")
 
   -- TreeSitter
   use({

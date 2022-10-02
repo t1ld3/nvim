@@ -18,7 +18,6 @@ local files = {
   "alpha",
   "which-key",
   "toggleterm",
-  "neoscroll",
   "illuminate",
 }
 vim.opt.termguicolors = true
