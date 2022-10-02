@@ -1,5 +1,14 @@
 local M = {}
 
+local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_cmp_ok then
+  return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -13,11 +22,9 @@ M.setup = function()
   end
 
   local config = {
-    -- disable virtual text
-    virtual_text = false,
-    -- show signs
+    virtual_text = false, -- disable virtual text
     signs = {
-      active = signs,
+      active = signs, -- show signs
     },
     update_in_insert = true,
     underline = true,
@@ -43,7 +50,6 @@ M.setup = function()
   })
 end
 
-
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
   local map = vim.api.nvim_buf_set_keymap
@@ -54,7 +60,7 @@ local function lsp_keymaps(bufnr)
   map(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   map(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>', opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]]
+  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
 end
 
 M.on_attach = function(client, bufnr)
@@ -62,15 +68,11 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
   lsp_keymaps(bufnr)
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
+  end
+  illuminate.on_attach(client)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
-end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M
