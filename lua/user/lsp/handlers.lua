@@ -54,7 +54,7 @@ local function lsp_keymaps(bufnr)
   map(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   map(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>', opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]]
 end
 
 M.on_attach = function(client, bufnr)
