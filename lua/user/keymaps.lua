@@ -8,6 +8,7 @@ local keymap = vim.api.nvim_set_keymap
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 keymap("", "q:", "<Nop>", opts)
+keymap("", "<F1>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -45,7 +46,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 -- Insert --
 -- Press jk fast to enter
---keymap("i", "jk", "<ESC>", opts)
+keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode

@@ -55,7 +55,6 @@ return packer.startup(function(use)
   use("lewis6991/impatient.nvim")
   use("lukas-reineke/indent-blankline.nvim")
   use("goolord/alpha-nvim")
-  use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
   use("folke/which-key.nvim")
   use("tpope/vim-surround")
   use("RRethy/vim-illuminate")
@@ -64,6 +63,8 @@ return packer.startup(function(use)
   use("kyazdani42/nvim-tree.lua")
   -- Colorschemes
   use("folke/tokyonight.nvim")
+  use { "catppuccin/nvim", as = "cattppuccin" }
+  use('stevearc/dressing.nvim')
   -- use "lunarvim/colorschemes"
   -- use "lunarvim/darkplus.nvim"
 
@@ -88,6 +89,7 @@ return packer.startup(function(use)
   -- Telescope
   use("nvim-telescope/telescope.nvim")
   use("nvim-telescope/telescope-media-files.nvim")
+  use('nvim-telescope/telescope-ui-select.nvim')
 
   -- TreeSitter
   use({
