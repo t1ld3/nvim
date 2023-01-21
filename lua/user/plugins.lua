@@ -65,6 +65,8 @@ return packer.startup(function(use)
   use("folke/tokyonight.nvim")
   use { "catppuccin/nvim", as = "cattppuccin" }
   use('stevearc/dressing.nvim')
+  use('savq/melange')
+  use('ellisonleao/gruvbox.nvim')
   -- use "lunarvim/colorschemes"
   -- use "lunarvim/darkplus.nvim"
 
@@ -103,6 +105,9 @@ return packer.startup(function(use)
 
   -- Git
   use("lewis6991/gitsigns.nvim")
+
+  -- DAP
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   -- Firenvim
   use({
