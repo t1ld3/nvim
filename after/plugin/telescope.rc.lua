@@ -94,6 +94,8 @@ telescope.setup({
     file_browser = {
       theme = "ivy",
       hijack_netrw = true,
+      respect_gitignore = false,
+      hidden = true,
     },
   },
 })
