@@ -54,6 +54,7 @@ return packer.startup(function(use)
   use("folke/which-key.nvim")
   use("tpope/vim-surround")
   use("RRethy/vim-illuminate")
+  use("ahmedkhalf/project.nvim")
 
   use("onsails/lspkind-nvim")
   use("kyazdani42/nvim-web-devicons")
