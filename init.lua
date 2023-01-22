@@ -1,34 +1,15 @@
-local files = {
+local base = {
+  "autocommands",
   "options",
   "keymaps",
   "plugins",
   "colorscheme",
-  "treesitter",
   "lsp",
-  "cmp",
-  "autopairs",
-  "nvim-tree",
-  "telescope",
-  "comment",
-  "gitsigns",
-  "bufferline",
-  "lualine",
-  "project",
-  "indentline",
-  "alpha",
-  "which-key",
-  "toggleterm",
-  "illuminate",
 }
 vim.opt.termguicolors = true
-require("user.notify")
-local status_notify_ok, notify = pcall(require, "notify")
-if status_notify_ok then
-  vim.notify = notify
-end
-for _, v in ipairs(files) do
+for _, v in ipairs(base) do
   local status_ok, _ = pcall(require, "user." .. v)
   if not status_ok then
-    vim.notify(v .. ".lua not found!", vim.log.levels.ERROR)
+    vim.notify("Error: missing file: '" .. v .. ".lua'", vim.log.levels.ERROR)
   end
 end
