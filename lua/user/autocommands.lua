@@ -1,9 +1,4 @@
-vim.cmd([[
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
-]])
+vim.api.nvim_create_autocmd({ "VimResized" }, { callback = function() vim.cmd "tabdo wincmd =" end })
 -- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
@@ -32,7 +27,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.spell = true
   end,
 })
-vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
+vim.api.nvim_create_autocmd({ "BufEnter" },
+  { callback = function() vim.cmd "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif" end })
 -- Fixes Autocomment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()

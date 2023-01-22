@@ -42,33 +42,25 @@ packer.init({
 return packer.startup(function(use)
   -- My plugins here
   use("wbthomason/packer.nvim") -- Have packer manage itself
-  use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
   use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use("rcarriga/nvim-notify")
   use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("akinsho/bufferline.nvim")
-  use("moll/vim-bbye")
-  use("nvim-lualine/lualine.nvim")
-  use("akinsho/toggleterm.nvim")
-  use("ahmedkhalf/project.nvim")
-  use("lewis6991/impatient.nvim")
-  use("lukas-reineke/indent-blankline.nvim")
+  use("windwp/nvim-ts-autotag") -- auto close html tags
+  use { "numToStr/Comment.nvim" } -- Easily comment stuff
+  use("akinsho/bufferline.nvim") -- tabline
+  use("nvim-lualine/lualine.nvim") -- statusline
+  use("akinsho/toggleterm.nvim") -- terminal handler
+  use("lukas-reineke/indent-blankline.nvim") -- indetation lines
   use("goolord/alpha-nvim")
   use("folke/which-key.nvim")
   use("tpope/vim-surround")
   use("RRethy/vim-illuminate")
 
+  use("onsails/lspkind-nvim")
   use("kyazdani42/nvim-web-devicons")
-  use("kyazdani42/nvim-tree.lua")
-  -- Colorschemes
-  use("folke/tokyonight.nvim")
-  use { "catppuccin/nvim", as = "cattppuccin" }
   use('stevearc/dressing.nvim')
+  -- Colorschemes
   use('savq/melange')
   use('ellisonleao/gruvbox.nvim')
-  -- use "lunarvim/colorschemes"
-  -- use "lunarvim/darkplus.nvim"
 
   -- cmp plugins
   use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -86,17 +78,21 @@ return packer.startup(function(use)
   -- LSP
   use("neovim/nvim-lspconfig") -- enable LSP
   use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
   use("nvim-telescope/telescope-media-files.nvim")
   use('nvim-telescope/telescope-ui-select.nvim')
+  use("nvim-telescope/telescope-file-browser.nvim")
 
   -- TreeSitter
   use({
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
   })
   use("p00f/nvim-ts-rainbow")
   use("nvim-treesitter/playground")
@@ -105,6 +101,7 @@ return packer.startup(function(use)
 
   -- Git
   use("lewis6991/gitsigns.nvim")
+  use("dinhhuy258/git.nvim")
 
   -- DAP
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
