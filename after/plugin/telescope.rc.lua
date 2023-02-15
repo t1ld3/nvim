@@ -96,6 +96,7 @@ telescope.setup({
       hijack_netrw = true,
       respect_gitignore = false,
       hidden = true,
+      grouped = true,
     },
   },
 })
