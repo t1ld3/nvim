@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
   use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
   use("windwp/nvim-ts-autotag") -- auto close html tags
-  use { "numToStr/Comment.nvim" } -- Easily comment stuff
+  use("numToStr/Comment.nvim") -- Easily comment stuff
   use("akinsho/bufferline.nvim") -- tabline
   use("nvim-lualine/lualine.nvim") -- statusline
   use("akinsho/toggleterm.nvim") -- terminal handler
@@ -57,7 +57,8 @@ return packer.startup(function(use)
   use("ahmedkhalf/project.nvim")
 
   use("onsails/lspkind-nvim")
-  use("kyazdani42/nvim-web-devicons")
+  use("nvim-tree/nvim-web-devicons")
+  use("nvim-tree/nvim-tree.lua")
   use('stevearc/dressing.nvim')
   -- Colorschemes
   use('savq/melange')
@@ -71,6 +72,7 @@ return packer.startup(function(use)
   use("saadparwaiz1/cmp_luasnip") -- snippet completions
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-nvim-lua")
+  use{ "codota/tabnine-nvim", run = "./dl_binaries.sh" }
 
   -- snippets
   use("L3MON4D3/LuaSnip") --snippet engine
@@ -78,7 +80,6 @@ return packer.startup(function(use)
 
   -- LSP
   use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
