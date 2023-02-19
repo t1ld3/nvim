@@ -20,7 +20,6 @@ nvim_tree.setup({
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = false,
   sort_by = "name",
   update_cwd = true,
   reload_on_bufenter = false,
@@ -36,7 +35,7 @@ nvim_tree.setup({
       custom_only = false,
       list = {
         { key = { "<CR>", "o" }, cb = tree_cb("edit") },
-        { key = "v", cb = tree_cb("vsplit") },
+        { key = "v",             cb = tree_cb("vsplit") },
       },
     },
   },
@@ -83,17 +82,11 @@ nvim_tree.setup({
   },
   hijack_directories = {
     enable = true,
-    auto_open = true,
   },
   update_focused_file = {
     enable = true,
     update_cwd = true,
     ignore_list = {},
-  },
-  ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
   },
   system_open = {
     cmd = "",
