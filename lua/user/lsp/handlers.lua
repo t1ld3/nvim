@@ -56,7 +56,20 @@ M.setup = function()
   })
 end
 
-local function lsp_keymaps(bufnr)
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+
+local function enable_format_on_save(_, bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup_format,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format({ bufnr = bufnr })
+    end,
+  })
+end
+
+local function lsp_keymaps(_, bufnr)
   local opts = { noremap = true, silent = true }
   local map = vim.api.nvim_buf_set_keymap
   map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -70,7 +83,8 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  lsp_keymaps(bufnr)
+  lsp_keymaps(client, bufnr)
+  enable_format_on_save(client, bufnr)
   local status_ok, illuminate = pcall(require, "illuminate")
   if not status_ok then
     return
