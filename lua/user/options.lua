@@ -49,7 +49,6 @@ local options = {
   fillchars = {
     eob = ' ',
   },
-  -- guifont = "monospace:h17",               -- the font used in graphical neovim applications
 }
 
 vim.opt.shortmess:append("c")
