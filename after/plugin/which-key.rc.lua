@@ -85,7 +85,7 @@ local mappings = {
     "Buffers",
   },
   ["e"] = { "<cmd>Telescope file_browser<cr>", "Explorer" },
-  ["n"] = {"<cmd>NvimTreeToggle<CR>", "File tree"},
+  ["n"] = { "<cmd>NvimTreeToggle<CR>", "File tree" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>qa<CR>", "Quit" },
   ["c"] = { "<cmd>bwipeout<CR>", "Close Buffer" },
@@ -96,7 +96,6 @@ local mappings = {
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -105,7 +104,6 @@ local mappings = {
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
-
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
@@ -116,6 +114,7 @@ local mappings = {
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+    S = { "<cmd>lua require 'gitsigns'.stage_buffer()<cr>", "Stage Hunk" },
     u = {
       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
       "Undo Stage Hunk",
@@ -123,12 +122,12 @@ local mappings = {
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+    C = { "<cmd>Telescope gitmoji<cr>", "Commit with gitmoji" },
     d = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
     },
   },
-
   l = {
     name = "Lsp",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
@@ -156,7 +155,6 @@ local mappings = {
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
   },
-
   t = {
     name = "Terminal",
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
