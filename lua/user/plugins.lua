@@ -72,7 +72,7 @@ return packer.startup(function(use)
   use("saadparwaiz1/cmp_luasnip") -- snippet completions
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-nvim-lua")
-  use{ "codota/tabnine-nvim", run = "./dl_binaries.sh" }
+  use { "codota/tabnine-nvim", run = "./dl_binaries.sh" }
 
   -- snippets
   use("L3MON4D3/LuaSnip") --snippet engine
@@ -90,6 +90,7 @@ return packer.startup(function(use)
   use("nvim-telescope/telescope-media-files.nvim")
   use('nvim-telescope/telescope-ui-select.nvim')
   use("nvim-telescope/telescope-file-browser.nvim")
+  use('olacin/telescope-gitmoji.nvim')
 
   -- TreeSitter
   use({
@@ -108,13 +109,6 @@ return packer.startup(function(use)
   -- DAP
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
-  -- Firenvim
-  use({
-    "glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
-  })
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
