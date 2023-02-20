@@ -117,7 +117,7 @@ telescope.setup({
           end
           -- Insert text instead of emoji in message
           local emoji_text = entry.value.text
-          vim.cmd(':G commit -m "' .. emoji_text .. ' ' .. msg .. '"')
+          vim.cmd(':!git commit -m "' .. emoji_text .. ' ' .. msg .. '"')
         end)
       end,
     },
