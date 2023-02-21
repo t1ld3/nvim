@@ -83,7 +83,7 @@ telescope.setup({
     find_files = {
       theme = "dropdown",
       previewer = false,
-      hidden = false,
+      command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
     },
   },
   extensions = {
