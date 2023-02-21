@@ -150,10 +150,11 @@ local mappings = {
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    h = { "<cmd>Telescope help_tags<cr>", "Find help" },
+    M = { "<cmd>Telescope man_pages<cr>", "Man pages" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open recent file" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
+    m = { "<cmd>Telescope media_files<cr>", "Media Files" },
   },
   t = {
     name = "Terminal",
