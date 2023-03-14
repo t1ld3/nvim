@@ -1,18 +1,14 @@
 require("nvim-treesitter.configs").setup({
   -- A list of parser names, or "all"
   ensure_installed = "all",
-
   -- Install languages synchronously (only applied to `ensure_installed`)
   sync_install = false,
-
   -- List of parsers to ignore installing
   ignore_install = {},
   autopairs = { enable = true },
-
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
-
     -- list of language that will be disabled
     --     disable = { "c", "rust" },
 
@@ -34,7 +30,7 @@ require("nvim-treesitter.configs").setup({
   playground = {
     enable = true,
     disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false, -- Whether the query persists across vim sessions
     keybindings = {
       toggle_query_editor = "o",

@@ -72,8 +72,7 @@ return packer.startup(function(use)
   use("saadparwaiz1/cmp_luasnip") -- snippet completions
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-nvim-lua")
-  use { "codota/tabnine-nvim", run = "./dl_binaries.sh" }
-
+  --[[ use { "codota/tabnine-nvim", run = "./dl_binaries.sh" } ]]
   -- snippets
   use("L3MON4D3/LuaSnip") --snippet engine
   use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
@@ -82,6 +81,7 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig") -- enable LSP
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
+  use("jay-babu/mason-nvim-dap.nvim")
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
 

@@ -28,3 +28,18 @@ local omnisharp_opts = require("user.lsp.settings.omnisharp")
 local omnisharp_ls_opts = vim.tbl_deep_extend("force", omnisharp_opts, opts)
 
 lspconfig.omnisharp.setup(omnisharp_ls_opts)
+
+local dockerls_opts = require("user.lsp.settings.dockerls")
+local dockerls_ls_opts = vim.tbl_deep_extend("force", dockerls_opts, opts)
+
+lspconfig.dockerls.setup(dockerls_ls_opts)
+
+local docker_compose_language_service_opts = require("user.lsp.settings.docker_compose_language_service")
+local docker_compose_language_service_ls_opts = vim.tbl_deep_extend("force", docker_compose_language_service_opts, opts)
+
+lspconfig.docker_compose_language_service.setup(docker_compose_language_service_ls_opts)
+
+local jdtls_opts = require("user.lsp.settings.jdtls")
+local jdtls_ls_opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
+
+lspconfig.jdtls.setup(jdtls_ls_opts)

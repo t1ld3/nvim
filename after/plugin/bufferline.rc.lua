@@ -5,11 +5,11 @@ end
 
 bufferline.setup({
   options = {
-    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-    close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
+    numbers = "none",                    -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-    left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
-    middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
+    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
     indicator = {
       icon = "▎",
       style = "icon",
@@ -24,7 +24,7 @@ bufferline.setup({
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | "nvim_lsp" | "coc",
+    diagnostics = false,    -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
     offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
     color_icons = true,
@@ -47,7 +47,6 @@ bufferline.setup({
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
-
     buffer_selected = {
       --[[ fg = { attribute = 'fg', highlight = 'TabLineSel' }, ]]
       --[[ bg = { attribute = 'bg', highlight = 'TabLineSel' }, ]]
@@ -57,7 +56,6 @@ bufferline.setup({
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
-
     close_button = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
@@ -66,7 +64,6 @@ bufferline.setup({
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
-
     tab_selected = {
       fg = { attribute = "fg", highlight = "Normal" },
       bg = { attribute = "bg", highlight = "Normal" },
@@ -80,7 +77,6 @@ bufferline.setup({
       fg = { attribute = "fg", highlight = "TabLineSel" },
       bg = { attribute = "bg", highlight = "Normal" },
     },
-
     duplicate_selected = {
       fg = { attribute = "fg", highlight = "TabLineSel" },
       bg = { attribute = "bg", highlight = "TabLineSel" },
@@ -96,7 +92,6 @@ bufferline.setup({
       bg = { attribute = "bg", highlight = "TabLine" },
       italic = true,
     },
-
     modified = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
@@ -109,7 +104,6 @@ bufferline.setup({
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
     },
-
     separator = {
       fg = { attribute = "bg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
