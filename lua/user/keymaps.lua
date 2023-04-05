@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -41,13 +39,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Close buffer
--- keymap("n", "<leader>q", ":Bdelete<CR>", opts)
-
--- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
--- keymap("n", "<leader>n", ":NvimTreeFindFile<CR>", opts)
--- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
--- keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
