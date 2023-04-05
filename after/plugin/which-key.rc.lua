@@ -147,6 +147,18 @@ local mappings = {
       "Workspace Symbols",
     },
   },
+  d = {
+    name = "Debugger",
+    c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+    h = { "<cmd>lua require('dap').step_hover()<cr>", "Step hover" },
+    i = { "<cmd>lua require('dap').step_into()<cr>", "Step into" },
+    o = { "<cmd>lua require('dap').step_out()<cr>", "Step out" },
+    b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
+    B = { "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set breakpoint" },
+    l = { "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
+      "Set log breakpoint" },
+    r = { "<cmd>lua require('dap').repl.open()<cr>", "Open repl" }
+  },
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
