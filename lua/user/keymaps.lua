@@ -8,7 +8,11 @@ local keymap = vim.api.nvim_set_keymap
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 keymap("", "q:", "<Nop>", opts)
-keymap("", "<F1>", "<Nop>", opts)
+keymap("n", "<F1>", "<Nop>", opts)
+keymap("i", "<F1>", "<Nop>", opts)
+keymap("v", "<F1>", "<Nop>", opts)
+keymap("t", "<F1>", "<Nop>", opts)
+keymap("x", "<F1>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
