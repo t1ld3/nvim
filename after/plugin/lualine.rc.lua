@@ -44,7 +44,7 @@ local location = {
 local filename = {
   'filename',
   file_status = true,
-  path = 0,
+  path = 1,
   symbols = {
     modified = '●', -- Text to show when the file is modified.
     readonly = '', -- Text to show when the file is non-modifiable or readonly.
@@ -77,7 +77,7 @@ lualine.setup({
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { { " filename", file_status = true, path = 1 } },
+    lualine_c = { { " filename", file_status = true, path = 2 } },
     lualine_x = { "location" },
     lualine_y = {},
     lualine_z = {},

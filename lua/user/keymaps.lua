@@ -3,16 +3,19 @@ local opts = { noremap = true, silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+-- disable annoyances
 keymap("", "q:", "<Nop>", opts)
 keymap("n", "<F1>", "<Nop>", opts)
 keymap("i", "<F1>", "<Nop>", opts)
 keymap("v", "<F1>", "<Nop>", opts)
 keymap("t", "<F1>", "<Nop>", opts)
 keymap("x", "<F1>", "<Nop>", opts)
+
+-- set leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+keymap("v", "<leader>r", "<cmd>lua require('telescope').extensions.refactoring.refactors()<cr>", opts);
 
 -- Modes
 --   normal_mode = "n",

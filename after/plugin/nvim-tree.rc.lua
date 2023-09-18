@@ -6,58 +6,45 @@ if not status_ok then
   return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-  return
+local function nvim_tree_on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- disable editing keymaps
+  vim.keymap.set('n', 'O', '', { buffer = bufnr })
+  vim.keymap.del('n', 'O', { buffer = bufnr })
+  vim.keymap.set('n', '<2-RightMouse>', '', { buffer = bufnr })
+  vim.keymap.del('n', '<2-RightMouse>', { buffer = bufnr })
+  vim.keymap.set('n', 'D', '', { buffer = bufnr })
+  vim.keymap.del('n', 'D', { buffer = bufnr })
+  vim.keymap.set('n', 'E', '', { buffer = bufnr })
+  vim.keymap.del('n', 'E', { buffer = bufnr })
+
+  -- custom keymaps
+  vim.keymap.set('n', '<cr>', api.node.open.edit, opts("Edit"))
+  vim.keymap.set('n', 'v', api.node.open.vertical, opts("vsplit"))
+  vim.keymap.set('n', 'A', api.tree.expand_all, opts('Expand All'))
+  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+  vim.keymap.set('n', 'C', api.tree.change_root_to_node, opts('CD'))
+
+  vim.keymap.set('n', 'Z', api.node.run.system, opts('Run System'))
 end
 
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
 nvim_tree.setup({
-  auto_reload_on_write = true,
-  create_in_closed_folder = false,
   disable_netrw = true,
-  hijack_cursor = false,
   hijack_netrw = true,
-  hijack_unnamed_buffer_when_opening = false,
   sort_by = "name",
-  update_cwd = true,
-  reload_on_bufenter = false,
-  respect_buf_cwd = false,
+  sync_root_with_cwd = true,
   view = {
     width = 25,
-    hide_root_folder = false,
-    side = "left",
-    preserve_window_proportions = false,
-    number = false,
-    relativenumber = false,
-    mappings = {
-      custom_only = false,
-      list = {
-        { key = { "<CR>", "o" }, cb = tree_cb("edit") },
-        { key = "v",             cb = tree_cb("vsplit") },
-      },
-    },
   },
   renderer = {
-    add_trailing = false,
-    group_empty = false,
-    highlight_git = false,
-    highlight_opened_files = "none",
-    root_folder_modifier = ":~",
-    indent_markers = {
-      enable = false,
-      icons = {
-        corner = "└ ",
-        edge = "│ ",
-        none = "  ",
-      },
-    },
     icons = {
-      webdev_colors = true,
-      git_placement = "before",
-      padding = " ",
-      symlink_arrow = " ➛ ",
       glyphs = {
         default = "",
         symlink = "",
@@ -80,17 +67,10 @@ nvim_tree.setup({
       },
     },
   },
-  hijack_directories = {
-    enable = true,
-  },
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_root = true,
     ignore_list = {},
-  },
-  system_open = {
-    cmd = "",
-    args = {},
   },
   diagnostics = {
     enable = true,
@@ -109,7 +89,6 @@ nvim_tree.setup({
   },
   git = {
     enable = true,
-    ignore = true,
     timeout = 500,
   },
   actions = {

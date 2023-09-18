@@ -41,20 +41,21 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use("wbthomason/packer.nvim") -- Have packer manage itself
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("windwp/nvim-ts-autotag") -- auto close html tags
-  use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("akinsho/bufferline.nvim") -- tabline
-  use("nvim-lualine/lualine.nvim") -- statusline
-  use("akinsho/toggleterm.nvim") -- terminal handler
+  use("wbthomason/packer.nvim")              -- Have packer manage itself
+  use("nvim-lua/plenary.nvim")               -- Useful lua functions used ny lots of plugins
+  use("windwp/nvim-autopairs")               -- Autopairs, integrates with both cmp and treesitter
+  use("windwp/nvim-ts-autotag")              -- auto close html tags
+  use("numToStr/Comment.nvim")               -- Easily comment stuff
+  use("nvim-lualine/lualine.nvim")           -- statusline
+  use("akinsho/toggleterm.nvim")             -- terminal handler
   use("lukas-reineke/indent-blankline.nvim") -- indetation lines
   use("goolord/alpha-nvim")
   use("folke/which-key.nvim")
   use("tpope/vim-surround")
   use("RRethy/vim-illuminate")
   use("ahmedkhalf/project.nvim")
+  use('ThePrimeagen/refactoring.nvim')
+  use('christoomey/vim-tmux-navigator')
 
   use("onsails/lspkind-nvim")
   use("nvim-tree/nvim-web-devicons")
@@ -65,24 +66,28 @@ return packer.startup(function(use)
   use('ellisonleao/gruvbox.nvim')
 
   -- cmp plugins
-  use("hrsh7th/nvim-cmp") -- The completion plugin
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("hrsh7th/cmp-cmdline") -- cmdline completions
+  use("hrsh7th/nvim-cmp")         -- The completion plugin
+  use("hrsh7th/cmp-buffer")       -- buffer completions
+  use("hrsh7th/cmp-path")         -- path completions
+  use("hrsh7th/cmp-cmdline")      -- cmdline completions
   use("saadparwaiz1/cmp_luasnip") -- snippet completions
   use("hrsh7th/cmp-nvim-lsp")
   use("hrsh7th/cmp-nvim-lua")
   --[[ use { "codota/tabnine-nvim", run = "./dl_binaries.sh" } ]]
   -- snippets
-  use("L3MON4D3/LuaSnip") --snippet engine
+  use("L3MON4D3/LuaSnip")             --snippet engine
   use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
   -- LSP
   use("neovim/nvim-lspconfig") -- enable LSP
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
-  use("jay-babu/mason-nvim-dap.nvim")
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  -- DAP
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use("jay-babu/mason-nvim-dap.nvim")
+  use("nvim-telescope/telescope-dap.nvim")
+  use("theHamsta/nvim-dap-virtual-text")
 
 
   -- Telescope
@@ -105,9 +110,6 @@ return packer.startup(function(use)
   -- Git
   use("lewis6991/gitsigns.nvim")
   use("dinhhuy258/git.nvim")
-
-  -- DAP
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

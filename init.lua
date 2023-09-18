@@ -8,8 +8,8 @@ local base = {
 }
 vim.opt.termguicolors = true
 for _, v in ipairs(base) do
-  local status_ok, _ = pcall(require, "user." .. v)
+  local status_ok, err = pcall(require, "user." .. v)
   if not status_ok then
-    vim.notify("Error: missing file: '" .. v .. ".lua'", vim.log.levels.ERROR)
+    vim.notify(v .. ".lua: " .. err, vim.log.levels.ERROR)
   end
 end

@@ -43,3 +43,23 @@ local jdtls_opts = require("user.lsp.settings.jdtls")
 local jdtls_ls_opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
 
 lspconfig.jdtls.setup(jdtls_ls_opts)
+
+lspconfig.eslint.setup(opts)
+
+lspconfig.tsserver.setup(opts)
+
+lspconfig.rust_analyzer.setup(opts)
+
+lspconfig.bashls.setup(opts)
+
+lspconfig.html.setup(opts)
+
+lspconfig.zk.setup(opts)
+
+lspconfig.texlab.setup(opts)
+
+lspconfig.cssls.setup(opts)
+
+lspconfig.csharp_ls.setup(opts)
+
+lspconfig.angularls.setup(opts)

@@ -40,11 +40,11 @@ M.setup = function()
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    update_in_insert = false,
-    virtual_text = { spacing = 4, prefix = '●' },
-    severity_sort = true,
-  }
+      underline = true,
+      update_in_insert = false,
+      virtual_text = { spacing = 4, prefix = '●' },
+      severity_sort = true,
+    }
   )
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -56,10 +56,9 @@ M.setup = function()
   })
 end
 
-local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local augroup_format = vim.api.nvim_create_augroup("LSP_Format", { clear = true })
 
-local function enable_format_on_save(_, bufnr)
-  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+local function create_format_autocmd(bufnr)
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup_format,
     buffer = bufnr,
@@ -68,6 +67,22 @@ local function enable_format_on_save(_, bufnr)
     end,
   })
 end
+
+local function enable_format_on_save(_, bufnr)
+  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  create_format_autocmd(bufnr)
+end
+
+local function toggle_format_on_save(_, bufnr)
+  local match = vim.api.nvim_get_autocmds({ group = augroup_format, event = "BufWritePre", buffer = bufnr })
+  if #match ~= 0 then
+    vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  else
+    create_format_autocmd(bufnr)
+  end
+end
+
+M.toggle_format_on_save = toggle_format_on_save
 
 local function lsp_keymaps(_, bufnr)
   local opts = { noremap = true, silent = true }
@@ -79,6 +94,7 @@ local function lsp_keymaps(_, bufnr)
   map(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   map(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>', opts)
+  map(bufnr, "n", "<leader>lt", '<cmd>lua require("user.lsp.handlers").toggle_format_on_save()<CR>', opts)
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({async=true})' ]])
 end
 

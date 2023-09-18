@@ -12,16 +12,11 @@ local DEFAULT_SETTINGS = {
   --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
   --       Example: automatic_installation = { exclude = { "python", "delve" } }
   automatic_installation = { "cpptools" },
-  -- Whether adapters that are installed in mason should be automatically set up in dap.
-  -- Removes the need to set up dap manually.
-  -- See mappings.adapters and mappings.configurations for settings.
-  -- Must invoke when set to true: `require 'mason-nvim-dap'.setup_handlers()`
-  -- Can either be:
-  -- 	- false: Dap is not automatically configured.
-  -- 	- true: Dap is automatically configured.
-  -- 	- {adapters: {ADAPTER: {}, }, configurations: {configuration: {}, }, filetypes: {filetype: {}, }}. Allows overriding default configuration.
-  -- 	- {adapters: function(default), configurations: function(default), filetypes: function(default), }. Allows modifying the default configuration passed in via function.
-  automatic_setup = true,
+  -- See below on usage
+  handlers = {
+    function(config)
+      mason_nvim_dap.default_setup(config)
+    end
+  }, -- 	- {adapters: function(default), configurations: function(default), filetypes: function(default), }. Allows modifying the default configuration passed in via function.
 }
 mason_nvim_dap.setup(DEFAULT_SETTINGS)
-mason_nvim_dap.setup_handlers()
