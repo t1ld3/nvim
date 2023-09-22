@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use("numToStr/Comment.nvim")               -- Easily comment stuff
   use("nvim-lualine/lualine.nvim")           -- statusline
   use("akinsho/toggleterm.nvim")             -- terminal handler
-  use("lukas-reineke/indent-blankline.nvim") -- indetation lines
+  use("lukas-reineke/indent-blankline.nvim") -- indentation lines
   use("goolord/alpha-nvim")
   use("folke/which-key.nvim")
   use("tpope/vim-surround")
