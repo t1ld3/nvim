@@ -56,8 +56,10 @@ return {
       local match = vim.api.nvim_get_autocmds({ group = augroup_format, event = "BufWritePre", buffer = bufnr })
       if #match ~= 0 then
         vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+        vim.print("Toggled lsp formatting off")
       else
         create_format_autocmd(bufnr)
+        vim.print("Toggled lsp formatting on")
       end
     end
 
