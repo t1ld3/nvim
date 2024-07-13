@@ -5,32 +5,56 @@ return {
   },
   config = function()
     local mason_nvim_dap = require("mason-nvim-dap")
-    local DEFAULT_SETTINGS = {
-      -- A list of adapters to install if they're not already installed.
-      -- This setting has no relation with the `automatic_installation` setting.
-      ensure_installed = {
-        "chrome-debug-adapter",
-        "cpptools",
-        "codelldb",
-        "delve",
-        "js-debug-adapter",
-      },
-      -- NOTE: this is left here for future porting in case needed
-      -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
-      -- This setting has no relation with the `ensure_installed` setting.
-      -- Can either be:
-      --   - false: Daps are not automatically installed.
-      --   - true: All adapters set up via dap are automatically installed.
-      --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
-      --       Example: automatic_installation = { exclude = { "python", "delve" } }
-      automatic_installation = true,
-      -- See below on usage
-      handlers = {
-        function(config)
-          mason_nvim_dap.default_setup(config)
-        end
-      }, -- 	- {adapters: function(default), configurations: function(default), filetypes: function(default), }. Allows modifying the default configuration passed in via function.
-    }
-    mason_nvim_dap.setup(DEFAULT_SETTINGS)
+    mason_nvim_dap.setup(
+      {
+        ensure_installed = {
+          "chrome-debug-adapter",
+          "cpptools",
+          "codelldb",
+          "delve",
+          "js-debug-adapter",
+        },
+        automatic_installation = true,
+        handlers = {
+          function(config)
+            mason_nvim_dap.default_setup(config)
+          end,
+          codelldb = function(config)
+            config.configurations = {
+              {
+                name = 'LLDB: Launch',
+                type = 'codelldb',
+                request = 'launch',
+                program = function()
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+                args = {},
+                console = 'integratedTerminal',
+              },
+              {
+                name = 'LLDB: Launch with command line arguments',
+                type = 'codelldb',
+                request = 'launch',
+                program = function()
+                  return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end,
+                cwd = '${workspaceFolder}',
+                stopOnEntry = false,
+                args = function()
+                  local input = vim.fn.input('Command-line arguments: ', 'file')
+                  local arguments = {}
+                  for argument in input:gmatch("%S+") do table.insert(arguments, argument) end
+                  return arguments
+                end,
+                console = 'integratedTerminal',
+              },
+            }
+            mason_nvim_dap.default_setup(config)
+          end
+        }, -- 	- {adapters: function(default), configurations: function(default), filetypes: function(default), }. Allows modifying the default configuration passed in via function.
+      }
+    )
   end
 }
