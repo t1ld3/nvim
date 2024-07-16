@@ -3,6 +3,8 @@ return {
   dependencies = {
     "RRethy/vim-illuminate",
     "hrsh7th/nvim-cmp",
+    { "j-hui/fidget.nvim", opts = {} },
+    'stevearc/conform.nvim',
   },
   event = { "BufReadPre", "BufNewFile" },
   config = function()
@@ -35,6 +37,23 @@ return {
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+
+    local conform = require('conform')
+
+    conform.setup({
+      formatters_by_ft = {
+        python = { "black" },
+        javascript = { "prettier" },
+      },
+      formatters = {
+        black = {
+          args = { "--fast" },
+        },
+        prettier = {
+          args = { "--no-semi", "--single-quote", "--jsx-single-quote" }
+        }
+      }
+    })
 
     local augroup_format = vim.api.nvim_create_augroup("LSP_Format", { clear = true })
     local function create_format_autocmd(bufnr)

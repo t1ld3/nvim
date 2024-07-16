@@ -30,7 +30,6 @@ return {
       local opts = { noremap = true, buffer = true }
       local set = vim.keymap.set
       set("t", "<esc>", [[<C-\><C-n>]], opts)
-      set("t", "jk", [[<C-\><C-n>]], opts)
       set("t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
       set("t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
       set("t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)

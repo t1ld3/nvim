@@ -10,7 +10,7 @@ return {
       },
       workspace = {
         library = {
-          vim.api.nvim_get_runtime_file("", true),
+          unpack(vim.api.nvim_get_runtime_file("", true)),
           vim.fn.stdpath("config") .. "/lua",
         },
       },
